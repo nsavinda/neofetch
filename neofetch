@@ -820,12 +820,12 @@ image_source="auto"
 # Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
 # Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, MX, Namib, Neptune, NetBSD, Netrunner,
 # Nitrux, NixOS, NNLinux, NomadBSD, Nurunner, NuTyX, Obarun, OBRevenge, Open Source Media Center,
-# OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap, openSUSE
+# OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
 # Tumbleweed, OpenWrt, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch, Pardus, Parrot,
 # Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS, Porteus,
-# PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian,
+# PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
 # Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-# Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Scientific, semc, Septor, Serene,
+# Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc, Septor, Serene,
 # SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus, Source Mage,
 # Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
 # Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
@@ -5873,12 +5873,12 @@ ASCII:
                                 Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
                                 Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, MX, Namib, Neptune, NetBSD, Netrunner,
                                 Nitrux, NixOS, NNLinux, NomadBSD, Nurunner, NuTyX, Obarun, OBRevenge, Open Source Media Center,
-                                OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap, openSUSE
+                                OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
                                 Tumbleweed, OpenWrt, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch, Pardus, Parrot,
                                 Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS, Porteus,
                                 PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian,
                                 Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-                                Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Scientific, semc, Septor, Serene,
+                                Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc, Septor, Serene,
                                 SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus, Source Mage,
                                 Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
                                 Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
@@ -12143,6 +12143,31 @@ ${c2}      `:smMMMMMMMMM${c4}hh${c3}MMMMMMMMMNh+.
 ${c2}          .+hMMMMMM${c4}hh${c3}MMMMMMdo:
 ${c2}             `:smMM${c4}yy${c3}MMNy/`
                  ${c2}.- ${c4}`${c3}:.
+EOF
+        ;;
+
+        "Sasanqua"*)
+            set_colors 5 1 5
+            read -rd '' ascii_data <<'EOF'
+${c1}
+                     __,_
+             _╕⌐≡µ,√*    º≡,
+            ñ     "'       ░
+           ╞)         _,   ▒     __
+     _,,,_ _Ñ╜^≡µ   ≡'  1µ╕º^el    "%µ
+     ∩'     K      Yµ&          1l     ╞)
+  ▒     √"        ^Ü          1"     `1µ
+  Γ    ║h                  _¿▒∞√;,     ^≡,
+   K    ^u_              ⌐*      ╙¥     ╓Ñ
+  ⌠        º≡u,,                  ║I    Å
+  Ü     _∩"                       ║µ_¿╝"
+   Yu_ ▒               ╙º≡_       ║l1µ
+      ║l          ,        Y∞µ___≡ª  Γl
+       ╓hⁿ╖I     1l         Ñ        ╓Ñ
+       Ñ   ¥,___≡1l        ╓Ñ      ¿╕ª
+       Ü         ╙L     ¿¿∩ª     ╓P
+        ª≡,__      *ⁿ┤ⁿÑⁿ^µ     √ª
+              ⁿ≡,,__√╝*    "ⁿⁿ*"                                       
 EOF
         ;;
 
