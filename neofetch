@@ -13085,15 +13085,15 @@ EOF
         "Ubuntu Unity"* | "Ubuntu-Unity"*)
             set_colors 5 7
             read -rd '' ascii_data <<'EOF'
-${c1}             .-/+ooosssssssssssooo+\-.
-           ,:+sssssssssssssssssssssss+:`
-         -+ssssssssssssssssssss${c2}....${c1}sssss+-
-       /ssssssss${c2}.',:clooo:${c1}sss${c2}.:loooo:.${c1}sssss.
-    .ssssssssss${c2}looooooooc${c1}sss${c2}.ooooooooo'${c1}sssss.
-   /ssssss${c2}.;lo${c1}ss${c2}oool:,''.${c1}ss${c2}:ooooooooooc${c1}ssssss.
-  +ssssss${c2};looool;.${c1}sssssssss${c2}'oooooooooo,${c1}sssssss+
- /ssssss${c2};clool'${c1}sssssssssssss${c2}.cooooooc${c1}sss${c2},,${c1}sssss.
-.sssssssssssssssssssssssssssssssssssss${c2}.:o,${c1}ssssss.
+${c1}               .-/+ooosssssssooo+\-.
+            ,:+sssssssssssssssssssss+:`
+         -+ssssssssssssssssssss${c2}.....${c1}ssss+-
+       /ssssss${c2},${c1}ss${c2}:cloooooo:${c1}ss${c2}.:loooo.${c1}ssssss.
+    .ssssssss${c2}loo${c1}ss${c2}oooooooc${c1}ss${c2}.ooooooooo${c1}ssssss.
+   /ssssss${c2}.;looooool:,''.${c1}ss${c2}:ooooooooooc${c1}ssssss.
+  +ssssss${c2};loooool;.${c1}ssssssssss${c2}ooooooooo${c1}ssssssss+
+ /ssssss${c2};clool'${c1}sssssssssssssss${c2}ooooooc${c1}ssss${c2},,${c1}sssss.
+.sssssssssssssssssssssssssssssssssssss${c2}.:oo,${c1}sssss.
 .sssss${c2}.;clol:,.${c1}ssssssssssssssssssssss${c2}.loooo'${c1}ssss.
 +ssss${c2}:ooooooooo,${c1}ssssssssssssssssssssss${c2}'ooool${c1}ssss+
 osss${c2}'ooooooooooo.${c1}ssssssssssssssssssssss${c2}loooo.${c1}ssso
@@ -13104,12 +13104,12 @@ ossss${c2},looooooc.${c1}sssssssssssssssssssssss${c2}.loooo.${c1}ssso
 .sssssss${c2}.cooooc.${c1}sssssssssssss${c2}.,,,,.${c1}ss${c2}.cooo.${c1}sssss.
  \sssssss${c2}ooooo:.${c1}ssssssssssss${c2}oooooooc.${c1}ss${c2}:l.${c1}sssss/
   +ssssss${c2}.coooooc,..${c1}sssssss${c2}cooooooooo.${c1}ssssssss+
-   \sssssss${c2}.:o${c1}ss${c2}ooooolc:.${c1}s${c2}.ooooooooooo'${c1}ssssss/
-    .ssssssssss${c2}.':loooo;${c1}sss${c2},ooooooooc${c1}sssssss.
-     \sssssssssssss${c2}.';:c'${c1}sss${c2}.;looo:'${c1}sssssss/
+   \sssssss${c2}.:oo${c1}s${c2}ooooolc:.${c1}s${c2}.ooooooooooo'${c1}ssssss/
+    .sssssss${c2}.o${c1}ss${c2}`:loooo;${c1}sss${c2},ooooooooc${c1}sssssss.
+     \sssssssss${c2};oooo';:c'${c1}ssss${c2}`:ooo:'${c1}sssssss/
        -+sssssssssssssssssssssssssssssss+-
-         `:+sssssssssssssssssssssssss+:`
-             .-\+ooosssssssssssooo+/-.
+          `:+sssssssssssssssssssssss+:`
+               .-\+ooosssssssooo+/-.
 EOF
         ;;
 
