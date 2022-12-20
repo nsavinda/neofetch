@@ -28,8 +28,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-version=1.1.1
-nf_version=7.4.0.1
+version=1.2
+nf_version=7.4.2
 
 # Fallback to a value of '5' for shells which support bash
 # but do not set the 'BASH_' shell variables (osh).
@@ -142,8 +142,8 @@ distro_shorthand="off"
 # Flag:    --os_arch
 #
 # Example:
-# on:  'Arch Linux x86_64'
-# off: 'Arch Linux'
+# on:  'Univalent GNU/Linux x86_64'
+# off: 'Univalent GNU/Linux'
 os_arch="on"
 
 
