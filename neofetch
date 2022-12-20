@@ -818,7 +818,7 @@ image_source="auto"
 # iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
 # KrassOS, KSLinux, Kubuntu, LangitKetujuh, LaxerOS, LEDE, LibreELEC, Linspire, Linux, Linux Lite,
 # Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
-# Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, MX, Namib, Neptune, NetBSD, Netrunner,
+# Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, Moevalent, MX, Namib, Neptune, NetBSD, Netrunner,
 # Nitrux, NixOS, NNLinux, NomadBSD, Nurunner, NuTyX, Obarun, OBRevenge, Open Source Media Center,
 # OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
 # Tumbleweed, OpenWrt, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch, Pardus, Parrot,
@@ -830,8 +830,8 @@ image_source="auto"
 # Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
 # Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
 # Ubuntu Touch, Ubuntu Unity, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos,
-# UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11, XFerience, Xubuntu,
-# yiffOS, Zorin have ascii logos.
+# UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11,
+# XFerience, Xubuntu, yiffOS, Zorin have ascii logos.
 
 # NOTE: arch, dragonfly, Fedora, LangitKetujuh, nixos, redhat, Ubuntu have 'old' logo variants, use
 # {distro}_old to use them.
@@ -5872,7 +5872,7 @@ ASCII:
                                 iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
                                 KrassOS, KSLinux, Kubuntu, LangitKetujuh, LaxerOS, LEDE, LibreELEC, Linspire, Linux, Linux Lite,
                                 Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
-                                Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, MX, Namib, Neptune, NetBSD, Netrunner,
+                                Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, Moevalent, MX, Namib, Neptune, NetBSD, Netrunner,
                                 Nitrux, NixOS, NNLinux, NomadBSD, Nurunner, NuTyX, Obarun, OBRevenge, Open Source Media Center,
                                 OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
                                 Tumbleweed, OpenWrt, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch, Pardus, Parrot,
@@ -5884,8 +5884,8 @@ ASCII:
                                 Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
                                 Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
                                 Ubuntu Touch, Ubuntu Unity, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos,
-                                UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11, XFerience, Xubuntu,
-                                yiffOS, Zorin have ascii logos.
+                                UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11,
+                                XFerience, Xubuntu, yiffOS, Zorin have ascii logos.
 
                                 NOTE: arch, dragonfly, Fedora, LangitKetujuh, nixos, redhat, Ubuntu have 'old' logo variants, use
                                 {distro}_old to use them.
@@ -10316,6 +10316,28 @@ mMMMs  dMMMo sMMMMMMd yMMMd  sMMMm
       :yddh+`hMMMMMMN :yddy/`
              .hMMMMd:
                `..`
+EOF
+        ;;
+
+
+        "Moevalent"*)
+            set_colors 1 5 7
+            read -rd '' ascii_data <<'EOF'
+${c1}
+   UUUUU${c2}VVVVVVVVVVVVVVVVVVVVVVV${c1}UUUUU
+   UUUUUU${c2}VVVVVVVV${c3}MM${c2}V${c3}MM${c2}VVVVVVVV${c1}UUUUUU
+   UUUUUUU${c2}VVVVVV${c3}MMMMMMM${c2}VVVVVV${c1}UUUUUUU
+   UUUUUUU ${c2}VVVVVV${c3}MMMMM${c2}VVVVVV${c1} UUUUUUU
+   UUUUUUUEE${c2}VVVVVVV${c3}M${c2}VVVVVVV${c1}  UUUUUUU
+   UUUUUUUEEE${c2}VVVVVVVVVVVVV${c1}   UUUUUUU
+   UUUUUUU    ${c2}VVVVVVVVVVV${c1}    UUUUUUU
+   UUUUUUUEEEEEEEEEEEEEE     UUUUUUU
+   UUUUUUUEEEEEEEEEEEEEE     UUUUUUU
+   UUUUUUU       ${c2}VVVVV${c1}       UUUUUUU
+    UUUUUUU       ${c2}VVV${c1}       UUUUUUU
+       UUUUUUU     ${c2}V${c1}     UUUUUUU
+          UUUUUUUUUUUUUUUUUUU
+             UUUUUUUUUUUUU
 EOF
         ;;
 
