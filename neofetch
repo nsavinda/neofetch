@@ -10321,7 +10321,7 @@ EOF
 
 
         "Moevalent"*)
-            set_colors 1 5 7
+            set_colors 5 1 7
             read -rd '' ascii_data <<'EOF'
 ${c1}
    UUUUU${c2}VVVVVVVVVVVVVVVVVVVVVVV${c1}UUUUU
