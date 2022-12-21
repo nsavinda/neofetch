@@ -28,8 +28,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-version=1.1.1
-nf_version=7.4.0.1
+version=1.2
+nf_version=7.4.2
 
 # Fallback to a value of '5' for shells which support bash
 # but do not set the 'BASH_' shell variables (osh).
@@ -142,8 +142,8 @@ distro_shorthand="off"
 # Flag:    --os_arch
 #
 # Example:
-# on:  'Arch Linux x86_64'
-# off: 'Arch Linux'
+# on:  'Univalent GNU/Linux x86_64'
+# off: 'Univalent GNU/Linux'
 os_arch="on"
 
 
@@ -818,20 +818,20 @@ image_source="auto"
 # iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
 # KrassOS, KSLinux, Kubuntu, LangitKetujuh, LaxerOS, LEDE, LibreELEC, Linspire, Linux, Linux Lite,
 # Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
-# Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, MX, Namib, Neptune, NetBSD, Netrunner,
+# Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, Moevalent, MX, Namib, Neptune, NetBSD, Netrunner,
 # Nitrux, NixOS, NNLinux, NomadBSD, Nurunner, NuTyX, Obarun, OBRevenge, Open Source Media Center,
-# OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap, openSUSE
+# OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
 # Tumbleweed, OpenWrt, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch, Pardus, Parrot,
 # Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS, Porteus,
-# PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian,
+# PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
 # Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-# Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Scientific, semc, Septor, Serene,
+# Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc, Septor, Serene,
 # SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus, Source Mage,
 # Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
 # Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
-# Ubuntu Touch, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos, UrukOS, uwuntu,
-# Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11, XFerience, Xubuntu,
-# yiffOS, Zorin have ascii logos.
+# Ubuntu Touch, Ubuntu Unity, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos,
+# UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11,
+# XFerience, Xubuntu, yiffOS, Zorin have ascii logos.
 
 # NOTE: arch, dragonfly, Fedora, LangitKetujuh, nixos, redhat, Ubuntu have 'old' logo variants, use
 # {distro}_old to use them.
@@ -1256,6 +1256,7 @@ get_distro() {
                     *"cinnamon"*) distro=${distro/Ubuntu/Ubuntu Cinnamon} ;;
                     *"ubuntusway"*) distro=${distro/Ubuntu/Ubuntu Sway} ;;
                     *"ukui"*)     distro=${distro/Ubuntu/Ubuntu Kylin} ;;
+                    *"unity"*)     distro=${distro/Ubuntu/Ubuntu Unity} ;;
                 esac
             fi
         ;;
@@ -4637,8 +4638,8 @@ get_cols() {
         printf -v block_spaces "%${block_height}s"
 
         # Convert the spaces into rows of blocks.
-        [[ "$blocks"  ]] && cols+="${block_spaces// /${blocks}[mnl}"
-        [[ "$blocks2" ]] && cols+="${block_spaces// /${blocks2}[mnl}"
+        [[ "$blocks"  ]] && cols+="${block_spaces// /${blocks}\[mnl}"
+        [[ "$blocks2" ]] && cols+="${block_spaces// /${blocks2}\[mnl}"
 
         # Determine the horizontal offset of the blocks.
         case $col_offset in
@@ -5871,20 +5872,20 @@ ASCII:
                                 iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
                                 KrassOS, KSLinux, Kubuntu, LangitKetujuh, LaxerOS, LEDE, LibreELEC, Linspire, Linux, Linux Lite,
                                 Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
-                                Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, MX, Namib, Neptune, NetBSD, Netrunner,
+                                Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, Moevalent, MX, Namib, Neptune, NetBSD, Netrunner,
                                 Nitrux, NixOS, NNLinux, NomadBSD, Nurunner, NuTyX, Obarun, OBRevenge, Open Source Media Center,
-                                OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap, openSUSE
+                                OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
                                 Tumbleweed, OpenWrt, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch, Pardus, Parrot,
                                 Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS, Porteus,
                                 PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian,
                                 Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-                                Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Scientific, semc, Septor, Serene,
+                                Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc, Septor, Serene,
                                 SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus, Source Mage,
                                 Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
                                 Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
-                                Ubuntu Touch, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos, UrukOS, uwuntu,
-                                Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11, XFerience, Xubuntu,
-                                yiffOS, Zorin have ascii logos.
+                                Ubuntu Touch, Ubuntu Unity, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos,
+                                UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11,
+                                XFerience, Xubuntu, yiffOS, Zorin have ascii logos.
 
                                 NOTE: arch, dragonfly, Fedora, LangitKetujuh, nixos, redhat, Ubuntu have 'old' logo variants, use
                                 {distro}_old to use them.
@@ -10318,6 +10319,28 @@ mMMMs  dMMMo sMMMMMMd yMMMd  sMMMm
 EOF
         ;;
 
+
+        "Moevalent"*)
+            set_colors 5 1 7
+            read -rd '' ascii_data <<'EOF'
+${c1}
+   UUUUU${c2}VVVVVVVVVVVVVVVVVVVVVVV${c1}UUUUU
+   UUUUUU${c2}VVVVVVVV${c3}MM${c2}V${c3}MM${c2}VVVVVVVV${c1}UUUUUU
+   UUUUUUU${c2}VVVVVV${c3}MMMMMMM${c2}VVVVVV${c1}UUUUUUU
+   UUUUUUU ${c2}VVVVVV${c3}MMMMM${c2}VVVVVV${c1} UUUUUUU
+   UUUUUUUEE${c2}VVVVVVV${c3}M${c2}VVVVVVV${c1}  UUUUUUU
+   UUUUUUUEEE${c2}VVVVVVVVVVVVV${c1}   UUUUUUU
+   UUUUUUU    ${c2}VVVVVVVVVVV${c1}    UUUUUUU
+   UUUUUUUEEEEEEEEEEEEEE     UUUUUUU
+   UUUUUUUEEEEEEEEEEEEEE     UUUUUUU
+   UUUUUUU       ${c2}VVVVV${c1}       UUUUUUU
+    UUUUUUU       ${c2}VVV${c1}       UUUUUUU
+       UUUUUUU     ${c2}V${c1}     UUUUUUU
+          UUUUUUUUUUUUUUUUUUU
+             UUUUUUUUUUUUU
+EOF
+        ;;
+
         "mx_small"*)
             set_colors 4 6 7
             read -rd '' ascii_data <<'EOF'
@@ -12146,6 +12169,31 @@ ${c2}             `:smMM${c4}yy${c3}MMNy/`
 EOF
         ;;
 
+        "Sasanqua"*)
+            set_colors 5 1 5
+            read -rd '' ascii_data <<'EOF'
+${c1}
+                     __,_
+             _╕⌐≡µ,√*    º≡,
+            ñ     "'       ░
+           ╞)         _,   ▒     __
+     _,,,_ _Ñ╜^≡µ   ≡'  1µ╕º^el    "%µ
+     ∩'     K      Yµ&          1l     ╞)
+  ▒     √"        ^Ü          1"     `1µ
+  Γ    ║h                  _¿▒∞√;,     ^≡,
+   K    ^u_              ⌐*      ╙¥     ╓Ñ
+  ⌠        º≡u,,                  ║I    Å
+  Ü     _∩"                       ║µ_¿╝"
+   Yu_ ▒               ╙º≡_       ║l1µ
+      ║l          ,        Y∞µ___≡ª  Γl
+       ╓hⁿ╖I     1l         Ñ        ╓Ñ
+       Ñ   ¥,___≡1l        ╓Ñ      ¿╕ª
+       Ü         ╙L     ¿¿∩ª     ╓P
+        ª≡,__      *ⁿ┤ⁿÑⁿ^µ     √ª
+              ⁿ≡,,__√╝*    "ⁿⁿ*"                                       
+EOF
+        ;;
+
         "ShastraOS"*)
             set_colors 6
             read -rd '' ascii_data <<'EOF'
@@ -13055,6 +13103,38 @@ ossy${c2}NMMMNy${c1}MM${c2}h${c1}sssssssssssssshmmmh${c1}ssssssso
             .-\+oossssoo+/-.
 EOF
         ;;
+
+        "Ubuntu Unity"* | "Ubuntu-Unity"*)
+            set_colors 5 7
+            read -rd '' ascii_data <<'EOF'
+${c1}               .-/+ooosssssssooo+\-.
+            ,:+sssssssssssssssssssss+:`
+         -+ssssssssssssssssssss${c2}.....${c1}ssss+-
+       /ssssss${c2},${c1}ss${c2}:cloooooo:${c1}ss${c2}.:loooo.${c1}ssssss.
+    .ssssssss${c2}loo${c1}ss${c2}oooooooc${c1}ss${c2}.ooooooooo${c1}ssssss.
+   /ssssss${c2}.;looooool:,''.${c1}ss${c2}:ooooooooooc${c1}ssssss.
+  +ssssss${c2};loooool;.${c1}ssssssssss${c2}ooooooooo${c1}ssssssss+
+ /ssssss${c2};clool'${c1}sssssssssssssss${c2}ooooooc${c1}ssss${c2},,${c1}sssss.
+.sssssssssssssssssssssssssssssssssssss${c2}.:oo,${c1}sssss.
+.sssss${c2}.;clol:,.${c1}ssssssssssssssssssssss${c2}.loooo'${c1}ssss.
++ssss${c2}:ooooooooo,${c1}ssssssssssssssssssssss${c2}'ooool${c1}ssss+
+osss${c2}'ooooooooooo.${c1}ssssssssssssssssssssss${c2}loooo.${c1}ssso
+osss${c2}'ooooooooool${c1}sssssssssssssssssssssss${c2}co${c1}ssssssso
+ossss${c2},looooooc.${c1}sssssssssssssssssssssss${c2}.loooo.${c1}ssso
++ssssss${c2}.,;;;'.${c1}ssssssssssssssssssssssss${c2};ooooc${c1}ssss+
+.ssssssssssssssssssssssssssssssssssss${c2},ooool.${c1}ssss.
+.sssssss${c2}.cooooc.${c1}sssssssssssss${c2}.,,,,.${c1}ss${c2}.cooo.${c1}sssss.
+ \sssssss${c2}ooooo:.${c1}ssssssssssss${c2}oooooooc.${c1}ss${c2}:l.${c1}sssss/
+  +ssssss${c2}.coooooc,..${c1}sssssss${c2}cooooooooo.${c1}ssssssss+
+   \sssssss${c2}.:oo${c1}s${c2}ooooolc:.${c1}s${c2}.ooooooooooo'${c1}ssssss/
+    .sssssss${c2}.o${c1}ss${c2}`:loooo;${c1}sss${c2},ooooooooc${c1}sssssss.
+     \sssssssss${c2};oooo';:c'${c1}ssss${c2}`:ooo:'${c1}sssssss/
+       -+sssssssssssssssssssssssssssssss+-
+          `:+sssssssssssssssssssssss+:`
+               .-\+ooosssssssooo+/-.
+EOF
+        ;;
+
 
         "ubuntu_small")
             set_colors 1
