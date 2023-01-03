@@ -825,9 +825,9 @@ image_source="auto"
 # Pardus, Parrot, Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS,
 # Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
 # Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-# Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc, Septor, Serene,
-# SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus, Source Mage,
-# Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
+# Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc,
+# Septor, Serene, SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus,
+# Source Mage, Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
 # Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
 # Ubuntu Touch, Ubuntu Unity, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos,
 # UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11,
@@ -5877,15 +5877,16 @@ ASCII:
                                 OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
                                 Tumbleweed, OpenWrt, open.Yellow.os, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch,
                                 Pardus, Parrot, Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS,
-                                Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian,
+                                Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
                                 Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-                                Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc, Septor, Serene,
-                                SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus, Source Mage,
-                                Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
+                                Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc,
+                                Septor, Serene, SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus,
+                                Source Mage, Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
                                 Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
                                 Ubuntu Touch, Ubuntu Unity, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos,
                                 UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11,
                                 XFerience, Xubuntu, yiffOS, Zorin have ascii logos.
+
 
                                 NOTE: arch, dragonfly, Fedora, LangitKetujuh, nixos, redhat, Ubuntu have 'old' logo variants, use
                                 {distro}_old to use them.
@@ -12036,6 +12037,27 @@ ${c1}
          -/+++++++++++++++++++++/.
            .:/+++++++++++++++/-`
               `.-:://////:-.
+EOF
+        ;;
+
+        "RhaymOS"*)
+            set_colors 1
+            read -rd '' ascii_data <<'EOF'
+${c1}             
+                    ###                 
+                   #####                       
+                                        
+              #######        /######## 
+           #############   ########### 
+   ,###########      ####  ####(..     
+  ####   ####       ####*  ##########  
+  ####    #####     #####         (####
+  ####      ###########    ########### 
+  ####       #########     ########## 
+                                       
+  ###################################  
+ ##################################### 
+#######################################
 EOF
         ;;
 
