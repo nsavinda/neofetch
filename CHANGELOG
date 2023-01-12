@@ -2,6 +2,7 @@
 Fix typo of Ubuntu Unity logo (own)
 Add open.Yellow.os logo (own)
 Add RhaymOS logo (dylanaraps#2274)
+Add support for displaying the ISA string on RISC-V CPUs (#24, from aaronfranke:unifetch-riscv-isa)
 
 1.2
 Update Makefile & CONTRIBUTING.md (dylanaraps#2245 & dylanaraps#2246)
