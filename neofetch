@@ -8,7 +8,8 @@
 #
 # The MIT License (MIT)
 #
-# Original Copyright (c) 2015-2021 Dylan Araps
+# Copyright (c) 2015-2021 Dylan Araps
+# Copyright (c) 2022-2023 Radio New Japan Broadcasting Club
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -825,9 +826,9 @@ image_source="auto"
 # Pardus, Parrot, Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS,
 # Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
 # Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-# Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc, Septor, Serene,
-# SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus, Source Mage,
-# Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
+# Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc,
+# Septor, Serene, SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus,
+# Source Mage, Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
 # Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
 # Ubuntu Touch, Ubuntu Unity, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos,
 # UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11,
@@ -2498,6 +2499,18 @@ get_cpu() {
                     [[ -z "$cpu" ]] && cpu="$(awk -F':' '/family/ {printf $2; exit}' "$cpu_file")"
                 ;;
 
+                "riscv"* | "rv"*)
+                    cpu_uarch="$(awk -F':' '/uarch/ {print $2; exit}' "$cpu_file")"
+                    # RISC-V ISA string example: "rv64imafdch_zicsr_zifencei".
+                    cpu_isa="$(awk -F':' '/isa/ {print $2; exit}' "$cpu_file")"
+                    # The _z parts are not important for CPU showcasing, so we remove them.
+                    cpu_isa="${cpu_isa%%_*}"
+                    # Then we replace "imafd" with "g" since "g" is a shorthand.
+                    cpu_isa="${cpu_isa/imafd/g}"
+                    # The final ISA output of the above example is "rv64gch".
+                    cpu="$cpu_uarch $cpu_isa"
+                ;;
+
                 "arm"* | "aarch64")
                     if [[ $(trim "$distro") == Android* ]]; then
                         # Android roms have modified cpuinfo that shows CPU model as a string
@@ -3934,6 +3947,7 @@ get_term() {
             ;;
 
             "gnome-terminal-") term="gnome-terminal" ;;
+	    "kgx")             term="gnome-console" ;;
             "cutefish-termin") term="cutefish-terminal" ;;
             "urxvtd")          term="urxvt" ;;
             *"nvim")           term="Neovim Terminal" ;;
@@ -5877,15 +5891,16 @@ ASCII:
                                 OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
                                 Tumbleweed, OpenWrt, open.Yellow.os, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch,
                                 Pardus, Parrot, Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS,
-                                Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian,
+                                Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
                                 Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-                                Regolith, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc, Septor, Serene,
-                                SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus, Source Mage,
-                                Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
+                                Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc,
+                                Septor, Serene, SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus,
+                                Source Mage, Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
                                 Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
                                 Ubuntu Touch, Ubuntu Unity, Ubuntu-GNOME, ubuntu_old02, Ultramarine Linux, Univalent, Univention, Uos,
                                 UrukOS, uwuntu, Vanilla, Venom, VNux, Void, VzLinux, wii-linux-ngx, Windows, Windows 10, Windows 11,
                                 XFerience, Xubuntu, yiffOS, Zorin have ascii logos.
+
 
                                 NOTE: arch, dragonfly, Fedora, LangitKetujuh, nixos, redhat, Ubuntu have 'old' logo variants, use
                                 {distro}_old to use them.
@@ -12036,6 +12051,27 @@ ${c1}
          -/+++++++++++++++++++++/.
            .:/+++++++++++++++/-`
               `.-:://////:-.
+EOF
+        ;;
+
+        "RhaymOS"*)
+            set_colors 1
+            read -rd '' ascii_data <<'EOF'
+${c1}             
+                    ###                 
+                   #####                       
+                                        
+              #######        /######## 
+           #############   ########### 
+   ,###########      ####  ####(..     
+  ####   ####       ####*  ##########  
+  ####    #####     #####         (####
+  ####      ###########    ########### 
+  ####       #########     ########## 
+                                       
+  ###################################  
+ ##################################### 
+#######################################
 EOF
         ;;
 
