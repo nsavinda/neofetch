@@ -4443,9 +4443,9 @@ get_battery() {
                     battery="${capacity}% [${status}]"
 
                     case $battery_display in
-                        "bar")     battery="$(bar "$capacity" 100)" ;;
-                        "infobar") battery+=" $(bar "$capacity" 100)" ;;
-                        "barinfo") battery="$(bar "$capacity" 100)${info_color} ${battery}" ;;
+                        "bar")     battery="$(bar "$((100-${battery/\%*}))" 100)" ;;
+                        "infobar") battery="${battery} $(bar "$((100-${battery/\%*}))" 100)" ;;
+                        "barinfo") battery="$(bar "$((100-${battery/\%*}))" 100)${info_color} ${battery}" ;;
                     esac
 
                     bat="${bat/*axp288_fuel_gauge}"
