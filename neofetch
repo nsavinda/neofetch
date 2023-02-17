@@ -813,7 +813,7 @@ image_source="auto"
 # ChonkySealOS, Chrom, Cleanjaro, Clear Linux OS, ClearOS, Clover, Cobalt Linux, Condres, 
 # Container Linux by CoreOS, CRUX, Crystal Linux, Cucumber, CutefishOS, CyberOS, dahlia, DarkOs, Darwin,
 # Debian, Deepin, DesaOS, Devuan, DracOS, DragonFly, Drauger, Elementary, Elive, EncryptOS, EndeavourOS,
-# Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, FreeBSD, FreeMiNT,
+# Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, Floflis FreeBSD, FreeMiNT,
 # Frugalware, Funtoo, GalliumOS, Garuda, Gentoo, GhostBSD, glaucus, gNewSense, GNOME, GNU,
 # GoboLinux, GrapheneOS, Grombyang, Guix, Haiku, HarDClanZ, Hash, Huayra, Hybrid, HydroOS, Hyperbola,
 # iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
@@ -1260,6 +1260,11 @@ get_distro() {
                     *"unity"*)     distro=${distro/Ubuntu/Ubuntu Unity} ;;
                 esac
             fi
+	    
+	    # Get Floflis.
+	    if [[ -f /etc/floflis-release ]]; then
+                    distro="Floflis"
+            fi
         ;;
 
         "Mac OS X"|"macOS")
@@ -1590,6 +1595,10 @@ get_model() {
 
         Solaris|illumos)
             model=$(prtconf -b | awk -F':' '/banner-name/ {printf $2}')
+            virt=$(/usr/bin/uname -V)
+            if [ $? == 0 ] && [ "$virt" != "non-virtualized" ]; then
+                model="${model:-$(uname -i)} (${virt})"
+            fi
         ;;
 
         AIX)
@@ -1663,6 +1672,15 @@ get_kernel() {
     [[ $os == Windows ]] && {
         kernel=$(wmic os get Version)
         kernel=${kernel/Version}
+        return
+    }
+
+    [[ $os == Solaris ]] && {
+        ver=$(uname -v)
+        case $ver in
+            11.[0123]) ;;
+            *) kernel=${ver} ;;
+        esac
         return
     }
 
@@ -4448,6 +4466,13 @@ get_battery() {
                         "barinfo") battery="$(bar "$capacity" 100)${info_color} ${battery}" ;;
                     esac
 
+                    # 今後実装予定。3a87f5fのコミットを一時的にコメントアウト
+		    #case $battery_display in
+                    #    "bar")     battery="$(bar "$((100-${battery/\%*}))" 100)" ;;
+                    #    "infobar") battery="${battery} $(bar "$((100-${battery/\%*}))" 100)" ;;
+                    #    "barinfo") battery="$(bar "$((100-${battery/\%*}))" 100)${info_color} ${battery}" ;;
+                    #esac
+
                     bat="${bat/*axp288_fuel_gauge}"
                     prin "${subtitle:+${subtitle}${bat: -1}}" "$battery"
                 fi
@@ -5880,7 +5905,7 @@ ASCII:
                                 ChonkySealOS, Chrom, Cleanjaro, Clear Linux OS, ClearOS, Clover, Cobalt Linux, Condres, 
                                 Container Linux by CoreOS, CRUX, Crystal Linux, Cucumber, CutefishOS, CyberOS, dahlia, DarkOs, Darwin,
                                 Debian, Deepin, DesaOS, Devuan, DracOS, DragonFly, Drauger, Elementary, Elive, EncryptOS, EndeavourOS,
-                                Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, FreeBSD, FreeMiNT,
+                                Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, Floflis, FreeBSD, FreeMiNT,
                                 Frugalware, Funtoo, GalliumOS, Garuda, Gentoo, GhostBSD, glaucus, gNewSense, GNOME, GNU,
                                 GoboLinux, GrapheneOS, Grombyang, Guix, Haiku, HarDClanZ, Hash, Huayra, Hybrid, HydroOS, Hyperbola,
                                 iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
@@ -8819,6 +8844,32 @@ ${c1}            ,,:;;;;:,,
      ,+%##################%;
         :+?S##########S?+:
             ,:;++++;:,
+EOF
+        ;;
+
+
+        "Floflis"*)
+            set_colors 1 7 3
+            read -rd '' ascii_data <<'EOF'
+\e[96m              ,▄▄▄▌▓▓███▓▓▌▄▄▄,             
+         ,▄▒▓███████████████████▓▄▄         
+       ▄▓███████████████████████████▌       
+      ▓███████████████████████████████      
+   ,  ╙▓████████████████████████████▀   ▄   
+  ╓█▓▄   ╙▀▓████████████████████▀▀`  ,▄██▓  
+ ╓█████▌▄,    '▀▀▀▀▓▓▓▓▓▓▀▀Å╙`    ▄▄▓█████▌ 
+ ██████████▓▌▄  ,             ▄▓███████████▄
+╢████████████▓  ║████▓▓███▌  ╣█████████████▓
+▓█████████████  ▐█████████▀  ▓██████████████
+▓█████████████  ▐█████████▄  ███████████████
+▀████████████▌  ║█████████▌  ▀█████████████▌
+ ████████████M  ▓██████████  ▐█████████████⌐
+ ▀██████████▌  ▐███████████▌  ▀███████████▌ 
+   ╙▓█████▓   ▓██████████████▄  ▀███████▀   
+     ╝▓██▀  ╓▓████████████████▓   ▀▓██▀     
+          ,▄████████████████████▌,          
+          ╝▀████████████████████▓▀'         
+             `╙▀▀▓▓███████▓▀▀╩'             
 EOF
         ;;
 
