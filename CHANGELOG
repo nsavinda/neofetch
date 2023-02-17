@@ -4,6 +4,7 @@ Add open.Yellow.os logo (own)
 Add RhaymOS logo (dylanaraps#2274)
 Add support for displaying the ISA string on RISC-V CPUs (#24, from aaronfranke:unifetch-riscv-isa)
 Add terminal gnome-console (dylanaraps#2277)
+Add Floflis (dylanaraps#2289)
 
 1.2
 Update Makefile & CONTRIBUTING.md (dylanaraps#2245 & dylanaraps#2246)
