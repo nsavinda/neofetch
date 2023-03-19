@@ -7,6 +7,7 @@
 * Add Floflis (dylanaraps#2289)
 * Simple improvements for Solaris (dylanaraps#2293)
 * Add Salient OS (dylanaraps#2301)
+* Fix Chrome OS (dylanaraps#2305)
 
 # 1.2
 * Update Makefile & CONTRIBUTING.md (dylanaraps#2245 & dylanaraps#2246)
