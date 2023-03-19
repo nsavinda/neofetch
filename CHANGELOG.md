@@ -6,6 +6,7 @@
 * Add terminal gnome-console (dylanaraps#2277)
 * Add Floflis (dylanaraps#2289)
 * Simple improvements for Solaris (dylanaraps#2293)
+* Add Salient OS (dylanaraps#2301)
 
 # 1.2
 * Update Makefile & CONTRIBUTING.md (dylanaraps#2245 & dylanaraps#2246)
