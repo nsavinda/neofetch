@@ -6198,7 +6198,7 @@ get_args() {
             ;;
             "--gen-man")
                 help2man -n "A fast, highly customizable system info script" \
-                          -N ./neofetch -o neofetch.1
+                          -N ./unifetch -o unifetch.1
                 exit 1
             ;;
 

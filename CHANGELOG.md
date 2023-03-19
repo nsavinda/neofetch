@@ -9,6 +9,7 @@
 * Add Salient OS (dylanaraps#2301)
 * Fix Chrome OS (dylanaraps#2305)
 * Add Punivalent (own)
+* Rename executable name (own)
 
 # 1.2
 * Update Makefile & CONTRIBUTING.md (dylanaraps#2245 & dylanaraps#2246)
