@@ -824,8 +824,8 @@ image_source="auto"
 # OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
 # Tumbleweed, OpenWrt, open.Yellow.os, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch,
 # Pardus, Parrot, Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS,
-# Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
-# Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
+# Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Punivalent, Puppy, PureOS, Q4OS, Qubes, Qubyt,
+# Quibian, Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
 # Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Salient OS, Sasanqua, Scientific, semc,
 # Septor, Serene, SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus,
 # Source Mage, Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
@@ -1263,10 +1263,27 @@ get_distro() {
                     *"unity"*)     distro=${distro/Ubuntu/Ubuntu Unity} ;;
                 esac
             fi
-	    
-	    # Get Floflis.
-	    if [[ -f /etc/floflis-release ]]; then
+
+            # Get Floflis.
+            if [[ -f /etc/floflis-release ]]; then
                     distro="Floflis"
+            fi
+
+            # Get Univalent flavour.
+            if [[ -f /usr/bin/pacman ]]; then
+                case $(pacman -Qq|grep uvgl-skel) in
+                    *"lxqt-kamu"*)    distro="KLAE"       ;;
+                    *"lxqt-moe"*)     distro="Moevalent"  ;;
+                    *"lxqt"*)         distro="Univalent"  ;;
+                    *"xfce"*)         distro="Xunivalent" ;;
+                    *"plasma"*)       distro="Punivalent" ;;
+                    *"i3wm"*)         distro="Uni3valent" ;;
+                    *"cinnamon"*)     distro="Cunivalent" ;;
+                    *"gnome"*)        distro="Gunivalent" ;;
+                    *"mate"*)         distro="Munivalent" ;;
+                    *"unity"*)        distro="Unitylent"  ;;
+                    *"tde"*)          distro="Trivalent"  ;;
+                esac
             fi
         ;;
 
@@ -5919,8 +5936,8 @@ ASCII:
                                 OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
                                 Tumbleweed, OpenWrt, open.Yellow.os, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch,
                                 Pardus, Parrot, Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS,
-                                Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
-                                Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
+                                Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Punivalent, Puppy, PureOS, Q4OS, Qubes, Qubyt,
+                                Quibian, Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
                                 Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Salient OS, Sasanqua, Scientific, semc,
                                 Septor, Serene, SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus,
                                 Source Mage, Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
@@ -11693,6 +11710,39 @@ ${c1}           `-/osyyyysosyhhhhhyys+-
       /dMMMMMMMMMMMMMMMMMMNdy/`
         .+hNMMMMMMMMMNmdhs/.
             .:/+ooo+/:-.
+EOF
+        ;;
+
+        "Punivalent"*)
+            set_colors 6 10 2
+            read -rd '' ascii_data <<'EOF'
+${c1}                     UUUUU${c2}VVVVVVVVVVVVVVVVVVV${c1}UUUUU
+         ${c3}fVVW        ${c1}UUUUUU${c2}VVVVVVVVVVVVVVVVV${c1}UUUUUU
+       ${c3}WVVVVVVWH     ${c1}UUUUUUU${c2}VVVVVVVVVVVVVVV${c1}UUUUUUU
+     ${c3}NkVVVVVVVVVVWWWV${c1}UUUUUUU ${c2}VVVVVVVVVVVVV ${c1}UUUUUUU
+      ${c3}NkVVyVVyVVVVVVV${c1}UUUUUUUEE${c2}VVVVVVVVVVV  ${c1}UUUUUUU
+       ${c3}NkVVVyVVyVVWQN${c1}UUUUUUUEEE${c2}VVVVVVVVV   ${c1}UUUUUUU
+        ${c3}NHWVVVVVWN   ${c1}UUUUUUU    ${c2}VVVVVVV    ${c1}UUUUUUU
+          ${c3}HVVyWN     ${c1}UUUUUUU     ${c2}VVVVV     ${c1}UUUUUUU
+         ${c3}HVVVWN      ${c1}UUUUUUU      ${c2}VVV      ${c1}UUUUUUU
+       ${c3}HHVVVV        ${c1}UUUUUUUEEEEEEEEEEE    UUUUUUU
+${c3}ffffVVVVVVyVW        ${c1}UUUUUUUEEEEEEEEEEE    UUUUUUU
+${c3}VVVVVVVVVyVVW         ${c1}UUUUUUUU     ${c2}V     ${c1}UUUUUUUU
+${c3}VVVVVVyVVVVWW           ${c1}UUUUUUUUUUUUUUUUUUUUUUU
+${c3}VVyVVyVVyVVVW               ${c1}UUUUUUUUUUUUUUU
+   ${c3}HQQkVVyVVW
+        ${c3}NVVVV
+        ${c3}NkVVyV
+         ${c3}NVVVVVW                        HVVW
+         HVVyVVVW                     HVVVVVVH
+        yVVVVVVVVVVW                fVVVVyVVVVfW
+      HVVVyVVyVVyVVVVVWHHHHHHHHHHVVVVVVVyVVyVVVVf
+     NVVVyVVyVVVVWkVVVVVVVVVVVVVVVVVVQVVVVVVyVVVVV
+      ${c3}NkVVVVVWW     NNkVVVVVVVVVyNN    NHkVVVVyVWN
+        NkWQd         NVyVVyVVVVW          NkVWN
+                      NVVVVVyVVy
+                       NVVyVVVyW
+                       NVVVVVVVW
 EOF
         ;;
 
