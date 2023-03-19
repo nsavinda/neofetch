@@ -816,7 +816,7 @@ image_source="auto"
 # Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, Floflis FreeBSD, FreeMiNT,
 # Frugalware, Funtoo, GalliumOS, Garuda, Gentoo, GhostBSD, glaucus, gNewSense, GNOME, GNU,
 # GoboLinux, GrapheneOS, Grombyang, Guix, Haiku, HarDClanZ, Hash, Huayra, Hybrid, HydroOS, Hyperbola,
-# iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
+# iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, KLAE, Kogaion, Korora,
 # KrassOS, KSLinux, Kubuntu, LangitKetujuh, LaxerOS, LEDE, LibreELEC, Linspire, Linux, Linux Lite,
 # Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
 # Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, Moevalent, MX, Namib, Neptune, NetBSD, Netrunner,
@@ -1272,17 +1272,16 @@ get_distro() {
             # Get Univalent flavour.
             if [[ -f /usr/bin/pacman ]]; then
                 case $(pacman -Qq|grep uvgl-skel) in
-                    *"lxqt-kamu"*)    distro="KLAE"       ;;
-                    *"lxqt-moe"*)     distro="Moevalent"  ;;
-                    *"lxqt"*)         distro="Univalent"  ;;
-                    *"xfce"*)         distro="Xunivalent" ;;
-                    *"plasma"*)       distro="Punivalent" ;;
-                    *"i3wm"*)         distro="Uni3valent" ;;
-                    *"cinnamon"*)     distro="Cunivalent" ;;
-                    *"gnome"*)        distro="Gunivalent" ;;
-                    *"mate"*)         distro="Munivalent" ;;
-                    *"unity"*)        distro="Unitylent"  ;;
-                    *"tde"*)          distro="Trivalent"  ;;
+                    *"lxqt-kamu"*)    distro="${distro/Kamuriki/KLAE}"       ;;
+                    *"lxqt-moe"*)     distro="${distro/Univalent/Moevalent}"  ;;
+                    *"lxqt"*)         distro="${distro/Univalent/Univalent}"  ;;
+                    *"xfce"*)         distro="${distro/Univalent/Xunivalent}" ;;
+                    *"plasma"*)       distro="${distro/Univalent/Punivalent}" ;;
+                    *"i3wm"*)         distro="${distro/Univalent/Uni3valent}" ;;
+                    *"cinnamon"*)     distro="${distro/Univalent/Cunivalent}" ;;
+                    *"gnome"*)        distro="${distro/Univalent/Gunivalent}" ;;
+                    *"mate"*)         distro="${distro/Univalent/Munivalent}" ;;
+                    *"unity"*)        distro="${distro/Univalent/Unitylent}"  ;;
                 esac
             fi
         ;;
@@ -5928,7 +5927,7 @@ ASCII:
                                 Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, Floflis, FreeBSD, FreeMiNT,
                                 Frugalware, Funtoo, GalliumOS, Garuda, Gentoo, GhostBSD, glaucus, gNewSense, GNOME, GNU,
                                 GoboLinux, GrapheneOS, Grombyang, Guix, Haiku, HarDClanZ, Hash, Huayra, Hybrid, HydroOS, Hyperbola,
-                                iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
+                                iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, KLAE, Kogaion, Korora,
                                 KrassOS, KSLinux, Kubuntu, LangitKetujuh, LaxerOS, LEDE, LibreELEC, Linspire, Linux, Linux Lite,
                                 Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
                                 Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, Moevalent, MX, Namib, Neptune, NetBSD, Netrunner,
@@ -9583,7 +9582,7 @@ EOF
         ;;
 
          "Kamuriki"*)
-            set_colors 2
+            set_colors 2 7
             read -rd '' ascii_data <<'EOF'
 ${c1}
            ......
@@ -9663,6 +9662,23 @@ ods+/:-----://+oyydmNMMMMMMMMMMMMMMMMMN-
 `                     .-:+osyhhdmmNNNmdo
 EOF
         ;;
+
+
+         "KLAE"*)
+            set_colors 4 6
+            read -rd '' ascii_data <<'EOF'
+${c1}
+           ......
+          / ____ \.
+   ____  / /${c2}SIM${c1} \ \.
+  /AAAA\/ /.${c2}HNA${c1} A\ \_ _,.,
+ /AAAAA/ /..${c2}I D${c1} AA\__'___ \.
+/AAAAA/ /AA.${c2}N E${c1} AAAAAAAAA\ \.
+AAAAA/ /AAA ${c2}A${c1}  AAAAAAAAAAA\ \._
+AAAA/ /AAAA ${c2}N${c1} AAAAAAAAAAAAA\   \.
+AAA/ /AAAAA ${c2}O  BASED_ON_ARCH${c1}\   \.
+EOF
+       ;;
 
         "Kogaion"*)
             set_colors 4 7 1
