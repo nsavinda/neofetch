@@ -1,4 +1,4 @@
-# 1.2.1
+# 1.3
 * Fix typo of Ubuntu Unity logo (own)
 * Add open.Yellow.os logo (own)
 * Add RhaymOS logo (dylanaraps#2274)
@@ -6,6 +6,10 @@
 * Add terminal gnome-console (dylanaraps#2277)
 * Add Floflis (dylanaraps#2289)
 * Simple improvements for Solaris (dylanaraps#2293)
+* Add Salient OS (dylanaraps#2301)
+* Fix Chrome OS (dylanaraps#2305)
+* Add Punivalent (own)
+* Rename executable name (own)
 
 # 1.2
 * Update Makefile & CONTRIBUTING.md (dylanaraps#2245 & dylanaraps#2246)
