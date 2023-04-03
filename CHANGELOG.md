@@ -8,7 +8,6 @@
 * Simple improvements for Solaris (dylanaraps#2293)
 * Add Salient OS (dylanaraps#2301)
 * Fix Chrome OS (dylanaraps#2305)
-* Add Punivalent (own)
 * Rename executable name (own)
 
 # 1.2
