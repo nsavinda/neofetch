@@ -12,10 +12,10 @@ install:
 	@mkdir -p $(DESTDIR)$(PREFIX)/share/unifetch/baz_plugin
 	@cp -p unifetch $(DESTDIR)$(PREFIX)/bin/unifetch
 	@cp -p unifetch.1 $(DESTDIR)$(MANDIR)/man1/unifetch.1
-	@ln -sf $(PREFIX)/bin/unifetch $(DESTDIR)$(PREFIX)/bin/neofetch
 	@cp -p baz.env $(DESTDIR)$(PREFIX)/share/unifetch/baz_plugin/baz.env
 	@cp -pr hooks $(DESTDIR)$(PREFIX)/share/unifetch/baz_plugin/hooks
 	@chmod 755 $(DESTDIR)$(PREFIX)/bin/unifetch
+	@cd $(DESTDIR)$(PREFIX)/bin && ln -sf unifetch neofetch
 
 uninstall:
 	@rm -rf $(DESTDIR)$(PREFIX)/bin/unifetch
