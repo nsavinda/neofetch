@@ -813,10 +813,10 @@ image_source="auto"
 # ChonkySealOS, Chrom, Cleanjaro, Clear Linux OS, ClearOS, Clover, Cobalt Linux, Condres, 
 # Container Linux by CoreOS, CRUX, Crystal Linux, Cucumber, CutefishOS, CyberOS, dahlia, DarkOs, Darwin,
 # Debian, Deepin, DesaOS, Devuan, DracOS, DragonFly, Drauger, Elementary, Elive, EncryptOS, EndeavourOS,
-# Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, FreeBSD, FreeMiNT,
+# Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, Floflis FreeBSD, FreeMiNT,
 # Frugalware, Funtoo, GalliumOS, Garuda, Gentoo, GhostBSD, glaucus, gNewSense, GNOME, GNU,
 # GoboLinux, GrapheneOS, Grombyang, Guix, Haiku, HarDClanZ, Hash, Huayra, Hybrid, HydroOS, Hyperbola,
-# iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
+# iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, KLAE, Kogaion, Korora,
 # KrassOS, KSLinux, Kubuntu, LangitKetujuh, LaxerOS, LEDE, LibreELEC, Linspire, Linux, Linux Lite,
 # Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
 # Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, Moevalent, MX, Namib, Neptune, NetBSD, Netrunner,
@@ -824,9 +824,9 @@ image_source="auto"
 # OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
 # Tumbleweed, OpenWrt, open.Yellow.os, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch,
 # Pardus, Parrot, Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS,
-# Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
-# Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-# Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc,
+# Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt,
+# Quibian, Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
+# Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Salient OS, Sasanqua, Scientific, semc,
 # Septor, Serene, SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus,
 # Source Mage, Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
 # Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
@@ -1221,15 +1221,18 @@ get_distro() {
             # Chrome OS doesn't conform to the /etc/*-release standard.
             # While the file is a series of variables they can't be sourced
             # by the shell since the values aren't quoted.
-            elif [[ -f /etc/lsb-release && $(< /etc/lsb-release) == *CHROMEOS* ]]; then
+            elif grep -q CHROMEOS /etc/lsb-release; then
                 distro='Chrome OS'
 
             elif [[ $(< /proc/version) == *chrome-bot* || -f /dev/cros_ec ]]; then
+                # gets chrome os version from /etc/lsb-release.
+                # totally not written by chatgpt :trolley:
+                cros_version=$(grep -oE 'CHROMEOS_RELEASE_CHROME_MILESTONE=([0-9]+)' /etc/lsb-release | cut -d= -f2)
                 [[ $distro != *Chrome* ]] &&
                     case $distro_shorthand in
-                        on)   distro="Chrome OS $distro" ;;
-                        tiny) distro="Chrome OS" ;;
-                        *)    distro="Chrome OS $distro" ;;
+                        on)   distro+=" [Chrome OS $cros_version]" ;;
+                        tiny) distro="Chrome OS $cros_version" ;;
+                        *)    distro+="Chrome OS $cros_version" ;;
                     esac
             fi
 
@@ -1258,6 +1261,19 @@ get_distro() {
                     *"ubuntusway"*) distro=${distro/Ubuntu/Ubuntu Sway} ;;
                     *"ukui"*)     distro=${distro/Ubuntu/Ubuntu Kylin} ;;
                     *"unity"*)     distro=${distro/Ubuntu/Ubuntu Unity} ;;
+                esac
+            fi
+
+            # Get Floflis.
+            if [[ -f /etc/floflis-release ]]; then
+                    distro="Floflis"
+            fi
+
+            # Get Univalent flavour.
+            if [[ -f /usr/bin/pacman ]]; then
+                case $(pacman -Qq|grep uvgl-skel) in
+                    *"lxqt-kamu"*)    distro="${distro/Kamuriki/KLAE}"       ;;
+                    *"lxqt-moe"*)     distro="${distro/Univalent/Moevalent}"  ;;
                 esac
             fi
         ;;
@@ -1590,6 +1606,10 @@ get_model() {
 
         Solaris|illumos)
             model=$(prtconf -b | awk -F':' '/banner-name/ {printf $2}')
+            virt=$(/usr/bin/uname -V)
+            if [ $? == 0 ] && [ "$virt" != "non-virtualized" ]; then
+                model="${model:-$(uname -i)} (${virt})"
+            fi
         ;;
 
         AIX)
@@ -1663,6 +1683,15 @@ get_kernel() {
     [[ $os == Windows ]] && {
         kernel=$(wmic os get Version)
         kernel=${kernel/Version}
+        return
+    }
+
+    [[ $os == Solaris ]] && {
+        ver=$(uname -v)
+        case $ver in
+            11.[0123]) ;;
+            *) kernel=${ver} ;;
+        esac
         return
     }
 
@@ -4448,6 +4477,13 @@ get_battery() {
                         "barinfo") battery="$(bar "$capacity" 100)${info_color} ${battery}" ;;
                     esac
 
+                    # 今後実装予定。3a87f5fのコミットを一時的にコメントアウト
+		    #case $battery_display in
+                    #    "bar")     battery="$(bar "$((100-${battery/\%*}))" 100)" ;;
+                    #    "infobar") battery="${battery} $(bar "$((100-${battery/\%*}))" 100)" ;;
+                    #    "barinfo") battery="$(bar "$((100-${battery/\%*}))" 100)${info_color} ${battery}" ;;
+                    #esac
+
                     bat="${bat/*axp288_fuel_gauge}"
                     prin "${subtitle:+${subtitle}${bat: -1}}" "$battery"
                 fi
@@ -5880,10 +5916,10 @@ ASCII:
                                 ChonkySealOS, Chrom, Cleanjaro, Clear Linux OS, ClearOS, Clover, Cobalt Linux, Condres, 
                                 Container Linux by CoreOS, CRUX, Crystal Linux, Cucumber, CutefishOS, CyberOS, dahlia, DarkOs, Darwin,
                                 Debian, Deepin, DesaOS, Devuan, DracOS, DragonFly, Drauger, Elementary, Elive, EncryptOS, EndeavourOS,
-                                Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, FreeBSD, FreeMiNT,
+                                Endless, Enso, EuroLinux, Exherbo, Exodia Predator OS, Fedora, Feren, Finnix, Floflis, FreeBSD, FreeMiNT,
                                 Frugalware, Funtoo, GalliumOS, Garuda, Gentoo, GhostBSD, glaucus, gNewSense, GNOME, GNU,
                                 GoboLinux, GrapheneOS, Grombyang, Guix, Haiku, HarDClanZ, Hash, Huayra, Hybrid, HydroOS, Hyperbola,
-                                iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, Kogaion, Korora,
+                                iglunix, instantOS, IRIX, Itc, januslinux, Kaisen, Kali, Kamuriki, KaOS, KDE, Kibojoe, KLAE, Kogaion, Korora,
                                 KrassOS, KSLinux, Kubuntu, LangitKetujuh, LaxerOS, LEDE, LibreELEC, Linspire, Linux, Linux Lite,
                                 Linux Mint, Linux Mint Old, Live Raizo, LMDE, Lubuntu, Lunar, mac, Mageia, MagpieOS, Mandriva,
                                 Manjaro, MassOS, MatuusOS, Maui, Mer, Minix, MIRACLE LINUX, Moevalent, MX, Namib, Neptune, NetBSD, Netrunner,
@@ -5891,9 +5927,9 @@ ASCII:
                                 OpenBSD, openEuler, OpenIndiana, openmamba, OpenMandriva, OpenStage, openSUSE, openSUSE Leap,
                                 Tumbleweed, OpenWrt, open.Yellow.os, OPNsense, Oracle, orchid, OS Elbrus, PacBSD, Parabola, parch,
                                 Pardus, Parrot, Parsix, PCBSD, PCLinuxOS, pearOS, Pengwin, Pentoo, Peppermint, Pisi, PNM Linux, Pop!_OS,
-                                Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt, Quibian, 
-                                Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
-                                Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Sasanqua, Scientific, semc,
+                                Porteus, PostMarketOS, Profelis SambaBOX, Proxmox, PuffOS, Puppy, PureOS, Q4OS, Qubes, Qubyt,
+                                Quibian, Radix, Raspbian, ravynOS, Reborn OS, Red Star, Redcore, Redhat, Refracted Devuan, Regata,
+                                Regolith, RhaymOS, rocky, Rosa, Sabayon, sabotage, Sailfish, SalentOS, Salient OS, Sasanqua, Scientific, semc,
                                 Septor, Serene, SharkLinux, ShastraOS, Siduction, SkiffOS, Slackware, SliTaz, SmartOS, Soda, Solus,
                                 Source Mage, Sparky, Star, SteamOS, Sulin, SunOS, SwagArch, t2, Tails, TeArch, TorizonCore, Trisquel, Twister,
                                 Ubuntu, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Studio, Ubuntu Sway,
@@ -6154,7 +6190,7 @@ get_args() {
             ;;
             "--gen-man")
                 help2man -n "A fast, highly customizable system info script" \
-                          -N ./neofetch -o neofetch.1
+                          -N ./unifetch -o unifetch.1
                 exit 1
             ;;
 
@@ -8822,6 +8858,32 @@ ${c1}            ,,:;;;;:,,
 EOF
         ;;
 
+
+        "Floflis"*)
+            set_colors 1 7 3
+            read -rd '' ascii_data <<'EOF'
+\e[96m              ,▄▄▄▌▓▓███▓▓▌▄▄▄,             
+         ,▄▒▓███████████████████▓▄▄         
+       ▄▓███████████████████████████▌       
+      ▓███████████████████████████████      
+   ,  ╙▓████████████████████████████▀   ▄   
+  ╓█▓▄   ╙▀▓████████████████████▀▀`  ,▄██▓  
+ ╓█████▌▄,    '▀▀▀▀▓▓▓▓▓▓▀▀Å╙`    ▄▄▓█████▌ 
+ ██████████▓▌▄  ,             ▄▓███████████▄
+╢████████████▓  ║████▓▓███▌  ╣█████████████▓
+▓█████████████  ▐█████████▀  ▓██████████████
+▓█████████████  ▐█████████▄  ███████████████
+▀████████████▌  ║█████████▌  ▀█████████████▌
+ ████████████M  ▓██████████  ▐█████████████⌐
+ ▀██████████▌  ▐███████████▌  ▀███████████▌ 
+   ╙▓█████▓   ▓██████████████▄  ▀███████▀   
+     ╝▓██▀  ╓▓████████████████▓   ▀▓██▀     
+          ,▄████████████████████▌,          
+          ╝▀████████████████████▓▀'         
+             `╙▀▀▓▓███████▓▀▀╩'             
+EOF
+        ;;
+
         "freebsd_small")
             set_colors 1 7 3
             read -rd '' ascii_data <<'EOF'
@@ -9512,7 +9574,7 @@ EOF
         ;;
 
          "Kamuriki"*)
-            set_colors 2
+            set_colors 2 7
             read -rd '' ascii_data <<'EOF'
 ${c1}
            ......
@@ -9592,6 +9654,23 @@ ods+/:-----://+oyydmNMMMMMMMMMMMMMMMMMN-
 `                     .-:+osyhhdmmNNNmdo
 EOF
         ;;
+
+
+         "KLAE"*)
+            set_colors 4 6
+            read -rd '' ascii_data <<'EOF'
+${c1}
+           ......
+          / ____ \.
+   ____  / /${c2}SIM${c1} \ \.
+  /AAAA\/ /.${c2}HNA${c1} A\ \_ _,.,
+ /AAAAA/ /..${c2}I D${c1} AA\__'___ \.
+/AAAAA/ /AA.${c2}N E${c1} AAAAAAAAA\ \.
+AAAAA/ /AAA ${c2}A${c1}  AAAAAAAAAAA\ \._
+AAAA/ /AAAA ${c2}N${c1} AAAAAAAAAAAAA\   \.
+AAA/ /AAAAA ${c2}O  BASED_ON_ARCH${c1}\   \.
+EOF
+       ;;
 
         "Kogaion"*)
             set_colors 4 7 1
@@ -12229,6 +12308,32 @@ ${c2}             `:smMM${c4}yy${c3}MMNy/`
                  ${c2}.- ${c4}`${c3}:.
 EOF
         ;;
+
+        "Salient OS"* | "SalientOS"* | "salientos"*)
+            set_colors 6 6 7 1
+            read -rd '' ascii_data <<'EOF'
+${c1}              00xxxx0
+          00xxxxxx0
+       0xxxxxxxxx         000000
+     0xxxxxxxxxx        xxxxxxxxxx0
+   0xxxxxxxxxxx0       xxxxxxxxxxxxx0
+  0xxxxxxxxxxxx0      0xxxxxxxxxxxxxx0
+ 0xxxxxxxxxxxxx0      0xxxxxxxxxxxxxxx0
+0xxxxxxxxxxxxxxx       xxxxxxxxxxxxxxxx0
+xxxxxxxxxxxxxxxx0      0xxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxx       0xxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxx       xxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxx0       xxxxxxxxxxxxxx
+0xxxxxxxxxxxxxxxxxx0      0xxxxxxxxxxxx0
+ 0xxxxxxxxxxxxxxxxxx       xxxxxxxxxxx0
+  0xxxxxxxxxxxxxxxxx       xxxxxxxxxx0
+   0xxxxxxxxxxxxxxxx       xxxxxxxxx0
+     0xxxxxxxxxxxx0       0xxxxxxx0
+        0xxxxxxx0         xxxxxx0
+                        0xxx00
+                      x00
+EOF
+		;;
 
         "Sasanqua"*)
             set_colors 5 1 5
