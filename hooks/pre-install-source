@@ -1,5 +1,5 @@
 #!/bin/bash
 
-log 'Making the baz plugin'
+baz_log 'Making the baz plugin'
 mkdir -p -- commands/
 cp neofetch commands/unifetch
