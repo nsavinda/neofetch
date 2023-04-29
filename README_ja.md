@@ -2,6 +2,7 @@
 
 <p align="center">
 <a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+<a href="https://aur.archlinux.org/packages/unifetch/"><img src="https://img.shields.io/aur/version/unifetch.svg"></a>
 </p>
 
 <img src="https://c.fantia.jp/uploads/post/file/1507686/main_webp_5a1ca61e-6bfa-45d0-9c44-3ee6f28b4604.webp" alt="unifetch" align="right" height="240px">
