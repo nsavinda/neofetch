@@ -807,7 +807,7 @@ image_source="auto"
 #
 # NOTE: AIX, AlmaLinux, Alpine, Alter, Amazon, AmogOS, Anarchy, Android, Antergos, antiX, AOSC OS,
 # AOSC OS/Retro, Aperio GNU/Linux, Apricity, Arch, ArchBox, Archcraft, ARCHlabs, ArchMerge,
-# ArchStrike, ArcoLinux, Artix, Arya, Asahi, Aster, AsteroidOS, astOS, Bedrock, BigLinux, Bitrig,
+# ArchStrike, ArcoLinux, Artix, Arya, Asahi, Aster, AsteroidOS, astOS, Astra Linux Bedrock, BigLinux, Bitrig,
 # BlackArch, blackPanther, BLAG, BlankOn, BlueLight, Bodhi, bonsai, BSD, BunsenLabs, Cachy OS,
 # Calculate, CalinixOS, Carbs, CBL-Mariner, CelOS, Center, CentOS, Chakra, ChaletOS, Chapeau,
 # ChonkySealOS, Chrom, Cleanjaro, Clear Linux OS, ClearOS, Clover, Cobalt Linux, Condres, 
@@ -1050,6 +1050,20 @@ get_distro() {
                 case $distro_shorthand in
                     on|tiny) distro="OS Elbrus" ;;
                     *) distro="OS Elbrus $(< /etc/mcst_version)"
+                esac
+
+            elif [[ -f /etc/astra_version ]]; then
+                distro="Astra Linux"
+                distro_version="$(cat /etc/astra_version \
+                                  | sed -nr 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')"
+                if [[ $distro_version == "2.12"* ]]; then
+                    distro_codename="ALCE"
+                else
+                    distro_codename="ALSE"
+                fi
+                case $distro_shorthand in
+                    on|tiny) distro=${distro} ;;
+                    *) distro="${distro} ${distro_version} ${distro_codename}"
                 esac
 
             elif [[ -f /etc/NIXOS ]]; then
@@ -2111,6 +2125,10 @@ get_de() {
             if [[ $DESKTOP_SESSION == *regolith ]]; then
                 de=Regolith
 
+            # Added support Fly for Astra Linux
+            elif [[ $DESKTOP_SESSION == fly ]]; then
+                de=Fly
+
             elif [[ $XDG_CURRENT_DESKTOP ]]; then
                 de=${XDG_CURRENT_DESKTOP/X\-}
                 de=${de/Budgie:GNOME/Budgie}
@@ -2386,6 +2404,16 @@ get_wm_theme() {
                             awk '/value \"file\" string.*.edj/ {print $4}')
                 wm_theme=${wm_theme##*/}
                 wm_theme=${wm_theme%.*}
+            fi
+        ;;
+
+        fly-wm)
+            fly_config_file
+            if grep -q 'DecorTheme' "${fly_config_file}" 2>/dev/null; then
+                wm_theme=$(awk -F'=' '/^DecorTheme/{print $2}' "${fly_config_file}")
+            fi
+            if [ -z "$wm_theme" ] || [ "$wm_theme" = "Not Found" ]; then
+                wm_theme=Default
             fi
         ;;
 
@@ -3711,6 +3739,29 @@ get_style() {
                 fi
                 shopt -u nullglob
             ;;
+	    
+            "Fly")
+                fly_config_file
+                if [[ $fly == "ColorScheme" ]]; then
+                    fly_theme=$(
+                        basename $(
+                            awk -F '=' '/^'"${fly}"'/{print $2}' "${HOME}/.fly/paletterc"
+                            )
+                    )
+                    if [[ $wm_theme == "Default" && $fly_theme != *"FlyDefault"* ]]; then
+                        fly_theme=$(awk -F '=' '/^'"${fly}"'/{print $2}'\
+                                        "${HOME}/.config/fly-admin-themerc")
+                    fi
+                elif [[ $fly == "IconTheme" ]]; then
+                     fly_theme=$(awk -F '=' '/^'"${fly}"'/{print $2}' "${fly_config_file}")
+                elif [[ $fly == "DefaultFont" ]]; then
+                    fly_theme=$(awk -F'=' '/^'"${fly}"'/\
+                                    {gsub(/"/, "", $2); \
+                                    sub(/-.*/, "", $2); \
+                                    print $2}' "${fly_config_file}")
+                fi
+                fly_theme+=" [$de], "
+            ;;
 
         esac
 
@@ -3866,6 +3917,7 @@ get_theme() {
     gconf="gtk_theme"
     xfconf="/Net/ThemeName"
     kde="widgetStyle"
+    fly="ColorScheme"
     lxqt="style"
     qt5ct="style=" # There is a property called 'stylesheets'.
 
@@ -3893,6 +3945,7 @@ get_font() {
     gconf="font_theme"
     xfconf="/Gtk/FontName"
     kde="font"
+    fly="DefaultFont"
     lxqt="font"
     qt5ct="general"
 
@@ -5604,6 +5657,12 @@ kde_config_dir() {
     kde_config_dir="${kde_config_dir/$'/:'*}"
 }
 
+    fly_config_file() {
+    # Return main path the fly config file
+    fly_config_file=${HOME}/.fly/theme/current.themerc
+}
+
+
 tde_config_dir() {
     if [[ "$tde_config_dir" ]]; then
         return
@@ -5910,7 +5969,7 @@ ASCII:
 
                                 NOTE: AIX, AlmaLinux, Alpine, Alter, Amazon, AmogOS, Anarchy, Android, Antergos, antiX, AOSC OS,
                                 AOSC OS/Retro, Aperio GNU/Linux, Apricity, Arch, ArchBox, Archcraft, ARCHlabs, ArchMerge,
-                                ArchStrike, ArcoLinux, Artix, Arya, Asahi, Aster, AsteroidOS, astOS, Bedrock, BigLinux, Bitrig,
+                                ArchStrike, ArcoLinux, Artix, Arya, Asahi, Aster, AsteroidOS, astOS, Astra Linux, Bedrock, BigLinux, Bitrig,
                                 BlackArch, blackPanther, BLAG, BlankOn, BlueLight, Bodhi, bonsai, BSD, BunsenLabs, Cachy OS,
                                 Calculate, CalinixOS, Carbs, CBL-Mariner, CelOS, Center, CentOS, Chakra, ChaletOS, Chapeau,
                                 ChonkySealOS, Chrom, Cleanjaro, Clear Linux OS, ClearOS, Clover, Cobalt Linux, Condres, 
@@ -7007,6 +7066,38 @@ uURF$##Bv       nKWB$%ABc       aM@3R@D@b
 %       &       G       U       @       @
 &       @       #       %       %       #
 !HGN@MNCf       t&$9#%HQr       ?@G#6S@QP
+EOF
+        ;;
+
+        "Astra Linux"*)
+            if [[ $ascii_distro == *"ALCE"* ]]; then
+                set_colors 160 231
+            else
+                set_colors 32 231
+            fi
+            read -rd '' ascii_data <<'EOF'
+${c1}                   AA
+${c1}                  AaaA
+${c1}                 Aa${c2}/\\${c1}aA
+${c1}                Aa${c2}/${c1}aa${c2}\\${c1}aA
+${c1}               Aa${c2}/${c1}aAAa${c2}\\${c1}aA
+${c1}              aA${c2}/${c1}aaAAaa${c2}\\${c1}Aa
+${c1}             aA${c2}/${c1}aaAAAAaa${c2}\\${c1}Aa
+${c1}   aaaaaaAAAAa${c2}/${c1}aaAAAAAAaa${c2}\\${c1}aAAAAaaaaa
+${c1} aAAa${c2}-----${c1}aaaaaAAAAAAAAAAaaaaa${c2}-----${c1}aAAa
+${c1}   aAA${c2}\ ${c1}aAAAAAAAAAAAAAAAAAAAAAAa${c2} /${c1}AAa
+${c1}     aAa${c2}\\${c1}aAAA${c2}\\${c1}AAAA${c2}\\${c1}AAAA${c2}\\${c1}AAA${c2}\\${c1}AAa${c2}/${c1}aAa
+${c1}       aAa${c2}\\${c1}aA${c2}\\\\${c1}AAA${c2}\\\\${c1}AAA${c2}\\\\${c1}AA${c2}\\\\/${c1}aAa
+${c1}        aAA${c2}\\${c1}aA${c2}\\\\${c1}AAA${c2}\\\\${c1}AAA${c2}\\\\${c1}Aa${c2}/${c1}AAa
+${c1}          aA${c2}\\${c1}aA${c2}\\\\${c1}AAA${c2}\\\\${c1}AAA${c2}\\\\/${c1}Aa
+${c1}          aA${c2}/${c1}AA${c2}\\\\\\${c1}AA${c2}\\\\\\${c1}AA${c2}\\\\\\${c1}Aa
+${c1}         aA${c2}/\\${c1}AAa${c2}\\\\\\${c1}Aa${c2}\\\\\\${c1}Aa${c2}\\\\\\${c1}Aa
+${c1}         aA${c2}/\\\\${c1}AAa${c2}\\\\/\\${c1}a${c2}\\\\\\${c1}Aa${c2}\\\\${c1}Aa
+${c1}        aA${c2}/${c1}a${c2}\\\\\\${c1}Aa${c2}\\/${c1}AA${c2}\\\\\\\\\\${c1}Aa${c2}\\\\${c1}Aa
+${c1}        aA${c2}/${c1}aA${c2}\\\\/${c1}aAa  aAa${c2}\\\\\\${c1}Aa${c2}\\${c1}Aa
+${c1}       aA${c2}/\\${c1}A${c2}\\/${c1}Aa        aA${c2}\\\\${c1}A${c2}\\\\${c1}Aa
+${c1}       A${c2}|/${c1}aaAa            aAaa${c2}\\|${c1}A
+${c1}      aAaa                    aaAa
 EOF
         ;;
 
