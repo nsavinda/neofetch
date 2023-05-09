@@ -1,4 +1,4 @@
-#1.3.1
+# 1.3.1
 * fix typo of Ubuntu Unity logo (own)
 * Add Astra Linux (dylanaraps#2213)
 
