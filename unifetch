@@ -7069,7 +7069,7 @@ uURF$##Bv       nKWB$%ABc       aM@3R@D@b
 EOF
         ;;
 
-        "Astra Linux"*)
+        "Astra"*)
             if [[ $ascii_distro == *"ALCE"* ]]; then
                 set_colors 160 231
             else
