@@ -1,6 +1,8 @@
 # 1.3.1
-* Fix typo of Ubuntu Unity logo (own)
+* fix typo of Ubuntu Unity logo (own)
 * fix pre-install-source hook (jin-asanami#37) 
+* Add Astra Linux (dylanaraps#2213)
+* Made sixel use -I (dylanaraps#2316)
 
 # 1.3
 * Fix typo of Ubuntu Unity logo (own)
