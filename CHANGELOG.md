@@ -1,6 +1,6 @@
 # 1.3.1
 * fix typo of Ubuntu Unity logo (own)
-* fix pre-install-source hook (jin-asanami#37) 
+* fix pre-install-source hook (njb-fm#37) 
 * Add Astra Linux (dylanaraps#2213)
 * Made sixel use -I (dylanaraps#2316)
 
@@ -8,7 +8,7 @@
 * Fix typo of Ubuntu Unity logo (own)
 * Add open.Yellow.os logo (own)
 * Add RhaymOS logo (dylanaraps#2274)
-* Add support for displaying the ISA string on RISC-V CPUs (jin-asanami#24, from aaronfranke:unifetch-riscv-isa)
+* Add support for displaying the ISA string on RISC-V CPUs (njb-fm#24, from aaronfranke:unifetch-riscv-isa)
 * Add terminal gnome-console (dylanaraps#2277)
 * Add Floflis (dylanaraps#2289)
 * Simple improvements for Solaris (dylanaraps#2293)
