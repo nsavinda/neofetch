@@ -1,3 +1,6 @@
+# 1.3.2
+* get-model fix (njb-fm#37, from nsavinda:master)
+
 # 1.3.1
 * fix typo of Ubuntu Unity logo (own)
 * fix pre-install-source hook (njb-fm#37) 
