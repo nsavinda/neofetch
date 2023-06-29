@@ -7,7 +7,7 @@
     * [No no's](#no-nos)
     * [If Statements](#if-statements)
     * [Case Statements](#case-statements)
-* [Making changes to Neofetch](#making-changes-to-neofetch)
+* [Making changes to Unifetch](#making-changes-to-unifetch)
     * [Adding support for a new Operating System / Distribution.](#adding-support-for-a-new-operating-system--distribution)
 
 <!-- vim-markdown-toc -->
@@ -31,7 +31,7 @@ For your contribution to be accepted, your changes need to pass
 ShellCheck.
 
 ```sh
-shellcheck neofetch
+shellcheck unifetch
 ```
 
 **Note**: If you have trouble installing ShellCheck. You can open a pull
@@ -50,7 +50,7 @@ request on the repo and our Travis.ci hook will run ShellCheck for you.
 - Don’t use `sed`.
     - Use `bash`'s built-in [parameter expansion](http://wiki.bash-hackers.org/syntax/pe).
 - Don’t use `cat`.
-    - Use `bash`'s built-in syntax (`file="$(< /path/to/file.txt)")`).
+    - Use `bash`'s built-in syntax (`file="$(< /path/to/file.txt)"`).
 - Don’t use `grep "pattern" | awk '{ printf }'`.
     - Use `awk '/pattern/ { printf }'`
 - Don’t use `wc`.
@@ -98,7 +98,7 @@ case "$var" in
 esac
 ```
 
-## Making changes to Neofetch
+## Making changes to Unifetch
 
 ### Adding support for a new Operating System / Distribution.
 
